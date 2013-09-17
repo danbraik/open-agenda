@@ -18,6 +18,10 @@ import vue.MainFrame;
 public class Main {
 
 	/**
+	 * Nom du répertoire contenant la configuration
+	 */
+	private static final String CONFIG_FOLDER = ".open-agenda";
+	/**
 	 * Nom de la propriété contenant le chemin vers le dernier agenda ouvert
 	 */
 	public static final String SYSPROP_LATEST_AGENDA = "agenda.properties";
@@ -80,7 +84,7 @@ public class Main {
 		String value = "";
 		try {
 			Scanner scanner = new Scanner(new FileReader(
-					System.getProperty("user.home")+File.separator+".openagenda"+File.separator+key));
+					System.getProperty("user.home")+File.separator+CONFIG_FOLDER+File.separator+key));
 			value = scanner.nextLine();
 			scanner.close();
 		} catch (SecurityException | IOException e) {
@@ -97,7 +101,7 @@ public class Main {
 	public static void setProperty(String key, String value) {
 		try {
 			PrintWriter writer = new PrintWriter(new FileWriter(
-					System.getProperty("user.home")+File.separator+".openagenda"+File.separator+key));
+					System.getProperty("user.home")+File.separator+CONFIG_FOLDER+File.separator+key));
 			writer.println(value);
 			writer.close();
 		} catch (SecurityException | IOException e) {
